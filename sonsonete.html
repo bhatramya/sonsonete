@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<title>Sonsonete Game</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {font-family: "Lato", sans-serif;}
+<!-- background-image: url('background1.jpg');background-blend-mode: screen,lighten;}-->
+.mySlides {display: none}
+hide{
+  visibility: hidden;
+}
+show{
+  display: block;
+}
+button{
+  background-color: black; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline;
+  font-size: 16px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin: 5px;
+  /* bring your own prefixes */
+  transform: translate(-150%, -90%);
+}
+
+button2{
+  background-color: black; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline;
+  font-size: 16px;
+  position: static;
+  top: 50%;
+  left: 50%;
+  margin: 5px;
+  /* bring your own prefixes */
+  transform: translate(-350%, -50%);
+}
+submit{
+  background-color: black; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  position: static;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-200%, -0%);
+}
+</style>
+<body>
+  <!-- Navbar -->
+<div class="w3-top" >
+  <div class="w3-bar w3-black w3-card">
+    <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">PAUSE</a>
+    <a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hide-small">EXIT</a>
+  </div>
+</div>
+
+
+  <div class="w3-container w3-content w3-center w3-padding-64" style=" max-width:1500px" id="play">
+    <h2 class="w3-wide"><b>SONSONETE</b></h2>
+    <p class="w3-opacity"><i>We love music</i></p>
+
+    
+    <div class="w3-quarter w3-hide-small">
+      <h2 class="w3-wide">Players</h2>
+      <ul class="w3-ul w3-border w3-white w3-text-grey">
+        <li class="w3-padding">Player 1 <span class="w3-badge w3-right w3-margin-right">15</span></li>
+        <li class="w3-padding">Host <span class="w3-badge w3-right w3-margin-right">20</span></li>
+        <li class="w3-red w3-padding" >You <span class="w3-badge w3-right w3-margin-right" id="update_score">0</span></li>
+      </ul>
+    </div>
+    <div class="w3-right m6  w3-padding-large w3-hide-small" id="players_list" >
+  <h2 class="w3-wide">Songs</h2>
+      <ul class="w3-ul w3-border w3-white w3-text-grey">
+        <li class="w3-padding">Love me like you do...</li>
+        <li class="w3-padding">I found the love, for me!</li>
+        <li class="w3-padding" id="update_song">...</li>
+      </ul>
+</div>
+
+<div class="w3-center m6" style="max-width:960px;left: 40%;">
+      <p class="w3-wide"><b>Your turn!</b></p>
+      <p class="w3-wide">Your word:</p>
+      <p class="w3-wide"><b>LOVE</b></p>
+
+<div id="sing_or_not">
+  <p class="w3-center">Do you want to sing?</p>
+        
+        <button class="w3-button w3-black w3-section w3-right" type="submit" href="#" onclick="onsinging()">SING</button>
+        <button2 class="w3-button w3-black w3-section w3-right" type="submit" href="#" onclick="onskip()">SKIP</button>      
+</div>
+<div id="score_display" style="display: none;">
+  <p class="w3-center" id="update_display"><b>...</b></p>
+</div>
+<div id="turn_display" style="display: none;">
+  <p class="w3-center"><b>You lost your turn! Better luck in next round!</b></p>
+</div>
+</div>
+</div>
+</div>
+
+  </div>
+  <div  id="enter_song" style="display: none;">
+    <div class="w3-container w3-content w3-center w3" style="max-width:500px">
+    <div class="w3-center m6" style="max-width:500px;left: 50%;" >
+        <input  class="w3-input w3-border" style="text-align: center;" type="text" placeholder="Enter the song here" required name="Song" id="song_entered">
+        
+        <submit class="w3-button w3-black w3-section w3-right" type="submit" href="#" onclick="presssubmit()">SUBMIT</button>
+        
+      </div>
+  </div>
+  </div>
+  
+  
+
+<script>
+function onsinging() {
+  document.getElementById('enter_song').style.display = "block";
+  document.getElementById('sing_or_not').style.display = "none";
+}
+</script>
+<script>
+function onskip() {
+  document.getElementById('turn_display').style.display="block";
+  document.getElementById('sing_or_not').style.display = "none";
+}
+</script>
+<script>
+function presssubmit() {
+  var in_name = document.getElementById('song_entered').value
+  if (in_name.indexOf("love")) {
+    document.getElementById("update_song").innerHTML = in_name;
+    document.getElementById("update_score").innerHTML = 10;
+    document.getElementById("update_display").innerHTML = "Right song! SCORE: 10";
+  }
+  else{
+    document.getElementById("update_song").innerHTML = "...";
+  document.getElementById("update_score").innerHTML = 0;
+  document.getElementById("update_display").innerHTML = "Wrong song! SCORE: 0";
+  }
+  
+  document.getElementById('enter_song').style.display = "none";
+  document.getElementById('score_display').style.display = "block";
+}
+</script>
+
+
+</body>
+</html>
